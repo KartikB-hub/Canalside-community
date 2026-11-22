@@ -215,9 +215,16 @@ async function loadRegister(){
   const extra = await Promise.all(live.map(async m => { const [b, bal, pl] = await Promise.all([c.commonBond(m.id), s.balanceOf(m.wallet), s.pledged(m.wallet)]); return { ...m, bond:b, bal: fromCents(bal), pledged: fromCents(pl) }; }));
   chain.register = extra;
 }
+/* Card artwork drawn as an SVG and stored inside the NFT itself, so wallets always have an image
+   even without a Pinata link. Kept small to limit gas. */
+function cardSvg(num, bond){
+  const x = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A9803A"/><stop offset=".5" stop-color="#F0DDA8"/><stop offset="1" stop-color="#9C7B3A"/></linearGradient></defs><rect width="600" height="600" fill="#08180F"/><circle cx="300" cy="300" r="260" fill="none" stroke="#C9A55C" stroke-opacity=".15" stroke-width="40" stroke-dasharray="2 6"/><text x="300" y="80" text-anchor="middle" font-family="sans-serif" font-size="15" letter-spacing="6" fill="#C9A55C">CANALSIDE COMMUNITY CREDIT UNION</text><rect x="45" y="140" width="510" height="322" rx="24" fill="#0F2D20" stroke="url(#g)" stroke-width="4"/><text x="80" y="205" font-family="serif" font-size="40" fill="url(#g)">Canalside</text><text x="520" y="200" text-anchor="end" font-family="sans-serif" font-size="12" letter-spacing="3" fill="#C9A55C">SOULBOUND · ERC-721</text><rect x="80" y="235" width="54" height="40" rx="6" fill="url(#g)"/><text x="80" y="320" font-family="sans-serif" font-size="12" letter-spacing="4" fill="#C9A55C">MEMBER NUMBER</text><text x="78" y="368" font-family="monospace" font-size="44" letter-spacing="8" fill="#EFE9DB">${x(num)}</text><text x="80" y="408" font-family="sans-serif" font-size="12" letter-spacing="4" fill="#C9A55C">COMMON BOND</text><text x="80" y="438" font-family="serif" font-style="italic" font-size="24" fill="#EFE9DB">${x(bond)}</text><text x="300" y="530" text-anchor="middle" font-family="serif" font-style="italic" font-size="22" fill="#EFE9DB">One member, one vote</text></svg>`;
+  return "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+}
 function cardUri(num, bond){
   const meta = { name:`Canalside Credit Union Member Card #${num}`, description:"Non-transferable proof of membership of Canalside Community Credit Union (Sepolia pilot). No personal data is stored on-chain.",
-    image: CARD_IMAGE, attributes:[{trait_type:"Member number",value:String(num)},{trait_type:"Common bond",value:bond},{trait_type:"Member since",value:String(new Date().getFullYear())},{trait_type:"Transferable",value:"No"}] };
+    image: CARD_IMAGE || cardSvg(num, bond), attributes:[{trait_type:"Member number",value:String(num)},{trait_type:"Common bond",value:bond},{trait_type:"Member since",value:String(new Date().getFullYear())},{trait_type:"Transferable",value:"No"}] };
   return "data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(meta))));
 }
 
