@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <meta name="description" content="Canalside Community Credit Union: member-owned savings and loans for people who live or work in Dublin 8 and Dublin 12 (student blockchain project demo).">
+  <title>Canalside Community Credit Union</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topline"><div class="wrap">
+  <span>Inchicore · Crumlin · Established 1967</span>
+  <span class="t-right">Member-owned · Not for profit · One member, one vote</span>
+</div></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Canalside Community Credit Union home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="#C9A55C" stroke-width="1.6"/>
+        <circle cx="32" cy="32" r="25.5" fill="none" stroke="#C9A55C" stroke-width=".7" opacity=".6"/>
+        <path d="M14 40 L26 22 M50 40 L38 22" stroke="#C9A55C" stroke-width="2.6" stroke-linecap="round"/>
+        <rect x="24" y="22" width="16" height="20" fill="none" stroke="#C9A55C" stroke-width="1.8"/>
+        <path d="M12 46 q5 -4 10 0 t10 0 t10 0 t10 0" stroke="#E8CF95" stroke-width="1.8" fill="none"/>
+      </svg>
+      <span><b>Canalside</b><small>Community Credit Union</small></span>
+    </a>
+    <nav class="main" id="nav" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#save">Save</a>
+      <a href="#borrow">Borrow</a>
+      <a href="#join">Join</a>
+      <a href="#member-card">Member Card</a>
+      <a href="#dashboard">My Dashboard</a>
+      <a href="#news">News</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
+      <a href="#branches">Branches</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-actions">
+      <button class="hdr-btn" id="walletBtn" type="button"><span class="dot" aria-hidden="true"></span><span id="walletLabel">Connect wallet</span></button>
+      <button class="hdr-btn menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="site">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="foot-name foil">Canalside</p>
+      <p class="muted" style="max-width:36ch">Savings and loans for people who live or work in Dublin 8 and Dublin 12, owned by our members since 1967.</p>
+    </div>
+    <div>
+      <p class="foot-head">Banking</p>
+      <a href="#save">Savings &amp; dividend</a>
+      <a href="#borrow">Loans &amp; calculator</a>
+      <a href="#dashboard">My Dashboard</a>
+      <a href="#member-card">Digital Member Card</a>
+    </div>
+    <div>
+      <p class="foot-head">The credit union</p>
+      <a href="#about">History, board &amp; AGM</a>
+      <a href="#news">News</a>
+      <a href="#faq">Questions</a>
+      <a href="#officer-desk">Officer Desk (staff)</a>
+    </div>
+    <div>
+      <p class="foot-head">Visit</p>
+      <a href="#branches">Inchicore, Dublin 8</a>
+      <a href="#branches">Crumlin, Dublin 12</a>
+      <a href="#contact">Contact us</a>
+    </div>
+    <div class="legal">
+      <p><b style="color:var(--ink)">Warning:</b> If you do not meet the repayments on your loan, your account will go into arrears. This may affect your credit rating, which may limit your ability to access credit in the future.</p>
+      <p>Student blockchain project demonstration. Canalside Community Credit Union is a fictional credit union: it accepts no deposits and offers no loans. People, rates and figures are illustrative. The Digital Member Card and Canalside Share contracts run on the Ethereum Sepolia testnet.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="layer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/chain.js"></script>
+</body>
+</html>
